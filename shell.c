@@ -6,14 +6,37 @@
  * Return: On Success 0
  */
 
-int main(void)
+int main()
 {
 	size_t n = 0;
-	char *buf = NULL;
+	char *command = NULL;
+	char *argv[] = {"/bin/ls", NULL};
+	pid_t pid;
+	int step;
 
-	printf("$ ");
-	
-	getline(&buf,&n, stdin);
-
-	return 0;
+	while(1)
+	{
+		printf("$ ");
+		getline(&command,&n, stdin);
+		printf("%s, ",command);
+		pid = fork();
+		if (pid == 0)
+		{
+			execve(argv[0], argv, NULL);
+		}
+//		if (pid == -1)
+//		{
+//			perror("error");
+//		}
+		else
+		{
+			wait(&step);
+		}
+	}
+	if (pid == -1)
+	{
+		perror("error");
+	}
+	free(command);
+	return (0);
 }
