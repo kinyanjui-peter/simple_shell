@@ -231,6 +231,7 @@ void check_chain(detail *, char *, size_t *, size_t, size_t);
 int replace_alias(detail *);
 int replace_vars(detail *);
 int replace_string(char **, char *);
+ssize_t input_buf(detail *info, char **buf, size_t *len);
 
 #endif
 
